@@ -138,22 +138,17 @@ export default function JobApplicationDetails() {
               <Text fontSize="sm" color="gray.500" mb={2}>
                 Resume
               </Text>
-              <Box
+              <Button
                 as="a"
                 href={application.resume.url}
                 target="_blank"
                 rel="noreferrer"
+                colorScheme="blue"
+                variant="outline"
+                size="sm"
               >
-                <Image
-                  src={application.resume.url}
-                  alt="resume"
-                  maxW="200px"
-                  borderRadius="md"
-                  borderWidth="1px"
-                  _hover={{ transform: "scale(1.05)" }}
-                  transition="transform 0.2s"
-                />
-              </Box>
+                View Resume PDF
+              </Button>
             </Box>
           )}
 

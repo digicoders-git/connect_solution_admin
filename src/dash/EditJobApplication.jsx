@@ -11,6 +11,8 @@ import {
   Heading,
   VStack,
   useColorMode,
+  Text,
+  Link,
 } from "@chakra-ui/react";
 import { useDarkMode } from "../DarkModeContext.jsx";
 import Loader from "../Loader";
@@ -28,6 +30,8 @@ export default function EditJobApplication() {
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [resumeFile, setResumeFile] = useState(null);
+  const [currentResume, setCurrentResume] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -51,6 +55,7 @@ export default function EditJobApplication() {
             experience: application.experience,
             currentLocation: application.currentLocation,
           });
+          setCurrentResume(application.resume);
         }
       } catch (error) {
         toast.error("Failed to fetch application details");
@@ -73,7 +78,18 @@ export default function EditJobApplication() {
     e.preventDefault();
     setSaving(true);
     try {
-      await API.put(`${import.meta.env.VITE_BASE_URL}/career/update/${id}`, formData);
+      const submitData = new FormData();
+      Object.keys(formData).forEach(key => {
+        submitData.append(key, formData[key]);
+      });
+      if (resumeFile) {
+        submitData.append('resume', resumeFile);
+      }
+      await API.put(`${import.meta.env.VITE_BASE_URL}/career/update/${id}`, submitData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       toast.success("Application updated successfully");
       navigate("/job-applications");
     } catch (error) {
@@ -162,6 +178,27 @@ export default function EditJobApplication() {
               onChange={handleChange}
               placeholder="Enter current location"
             />
+          </FormControl>
+
+          <FormControl>
+            <FormLabel>Resume (PDF)</FormLabel>
+            {currentResume?.url && (
+              <Box mb={2}>
+                <Text fontSize="sm" color="gray.500">Current Resume:</Text>
+                <Link href={currentResume.url} target="_blank" color="blue.500">
+                  View Current Resume
+                </Link>
+              </Box>
+            )}
+            <Input
+              type="file"
+              accept=".pdf"
+              onChange={(e) => setResumeFile(e.target.files[0])}
+              p={1}
+            />
+            <Text fontSize="xs" color="gray.500" mt={1}>
+              Upload new PDF to replace current resume (optional)
+            </Text>
           </FormControl>
 
           <Box display="flex" gap={4} w="full">

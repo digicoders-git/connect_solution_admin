@@ -98,34 +98,28 @@ export default function JobApplications() {
 
   const handleRefresh = () => {
     getApplications();
-    toast.info("Refreshed job applications list");
+    // toast.info("Refreshed job applications list");
   };
 
   const resumeCell = (resume) =>
-    resume?.url ? (
-      <Box
-        as="a"
-        href={resume.url}
-        target="_blank"
-        rel="noreferrer"
-        display="flex"
-        justifyContent="center"
-      >
-        <Image
-          src={resume.url}
-          alt="resume"
-          boxSize="12"
-          objectFit="cover"
-          borderRadius="md"
-          borderWidth="1px"
-          _hover={{ transform: "scale(1.1)" }}
-        />
-      </Box>
-    ) : (
-      <Text fontSize="xs" color="gray.400" textAlign="center">
-        -
-      </Text>
-    );
+  resume?.path ? (
+    <Button
+      as="a"
+      href={resume.path}
+      target="_blank"
+      rel="noreferrer"
+      size="sm"
+      colorScheme="blue"
+      variant="outline"
+    >
+      View PDF
+    </Button>
+  ) : (
+    <Text fontSize="xs" color="gray.400" textAlign="center">
+      -
+    </Text>
+  );
+
 
   // Pagination Logic
   const indexOfLastItem = currentPage * itemsPerPage;
