@@ -18,6 +18,9 @@ import ContactDetails from "./dash/ContactDetails";
 import JobApplications from "./dash/JobApplications";
 import EditJobApplication from "./dash/EditJobApplication";
 import JobApplicationDetails from "./dash/JobApplicationDetails";
+import Consultations from "./dash/Consultations";
+import EditConsultation from "./dash/EditConsultation";
+import ConsultationDetails from "./dash/ConsultationDetails";
 import Loader from "./Loader";
 // IMPORTANT: adjust this import if your Login file is at a different path.
 // I placed the improved login at src/pages/Login.jsx in earlier steps:
@@ -62,6 +65,9 @@ function App() {
           <Route path="job-applications" element={<JobApplications />} />
           <Route path="edit-job-application/:id" element={<EditJobApplication />} />
           <Route path="job-application-details/:id" element={<JobApplicationDetails />} />
+          <Route path="consultations" element={<Consultations />} />
+          <Route path="edit-consultation/:id" element={<EditConsultation />} />
+          <Route path="consultation-details/:id" element={<ConsultationDetails />} />
           {/* <Route path="add-project" element={<AddProject />} />
           <Route path="users" element={<User />} />
           <Route path="category" element={<Category />} />

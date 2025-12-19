@@ -63,6 +63,23 @@ const icons = {
       <line x1="12" y1="17" x2="12" y2="21"/>
     </svg>
   ),
+  consultation: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      <path d="M8 9h8"/>
+      <path d="M8 13h6"/>
+    </svg>
+  ),
   profile: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -148,6 +165,12 @@ export default function DashboardLayout() {
       label: "Job Applications",
       icon: icons.jobApplications,
     },
+    {
+      id: "consultation",
+      to: "/consultations",
+      label: "Consultations",
+      icon: icons.consultation,
+    },
     { id: "profile", to: "/profile", label: "Profile", icon: icons.profile },
   ];
 
@@ -157,11 +180,9 @@ export default function DashboardLayout() {
       "flex items-center gap-3 mb-2 px-3 py-2 rounded-lg transition-all duration-150 text-sm relative overflow-hidden";
     if (isActive) {
       // active: left accent + bold
-      return `${base} ${
-        darkMode ? "bg-gray-700 text-white" : "bg-gray-100 text-gray-900"
-      } font-semibold before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:rounded-r before:${
+      return `${base} font-semibold before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:rounded-r before:${
         darkMode ? "bg-indigo-400" : "bg-indigo-600"
-      }`;
+      } text-white` + " " + (darkMode ? "" : "") + " bg-[#101828]";
     } else {
       // not active
       return `${base} ${
