@@ -125,7 +125,7 @@ export default function Login() {
             {loading ? "Logging in..." : "Login"}
           </button>
           <div style={{fontSize:"12px", color:"#333", textAlign:"center", marginTop:"10px"}}>
-            @ 2025 Ameraa Finnway. All rights reserved.
+            @ 2025 Connect Solution. All rights reserved.
           </div>
         </form>
 

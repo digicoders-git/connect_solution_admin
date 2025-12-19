@@ -123,7 +123,7 @@ export default function DashboardHome() {
                 {getGreeting()}, {adminData?.name || "Admin"}! 👋
               </h1>
               <p className={`text-lg ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
-                Welcome to your Ameraa Finnway Admin Dashboard
+                Welcome to your Connect Solution Admin Dashboard
               </p>
             </div>
             <div className="mt-4 md:mt-0 text-right">
